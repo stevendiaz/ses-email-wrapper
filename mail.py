@@ -31,5 +31,6 @@ class Message(object):
     def text(self, value):
         self.Message['Body']['Text']['Data'] = value
 
-    def dict(self):
-        return self.__dict__
+    def send_mail(self, aws_region_name, aws_access_key, aws_secret_access_key):
+        ses_client = boto3.client('ses', region_name=aws_region_name, aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_access_key)
+        ses_client.send_email(**self.__dict__)
