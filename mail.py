@@ -1,4 +1,4 @@
-
+import boto3
 
 class Message(object):
 
@@ -39,4 +39,4 @@ class Message(object):
         if self.html is None and self.text is None:
             raise Exception('You must set an html body or text body')
         
-        ses_client.send_email(**self.__dict__)
+        return ses_client.send_email(**self.__dict__)
